@@ -1,5 +1,7 @@
 export default function OpeningScreen() {
-    <div class='flex-row justify-center items-center'>
-        <img src="/home/samuel-john/coding/capturemate/capturemate/src/assets/logo.png" alt="" />
-    </div>
+    return (
+        <div className='flex-row justify-center items-center'>
+            <img src="/assets/logo.png" alt="a" />
+        </div>
+    )
 }
