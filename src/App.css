@@ -1,0 +1,7 @@
+.MuiInputLabel-filled.Mui-disabled {
+  color:#525252 !important;
+}
+
+.MuiFormControl-root > div {
+  background-color: transparent !important;
+}
