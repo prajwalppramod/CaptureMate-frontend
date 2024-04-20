@@ -9,6 +9,7 @@ export default function StyleProvider({ children }) {
                 styleOverrides: {
                     root: {
                         backgroundColor: '#171717',
+                        fontFamily: 'SF Pro Display, sans-serif',
                     }
                 }
             }
