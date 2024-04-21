@@ -9,6 +9,11 @@ export default function StyleProvider({ children }) {
                 styleOverrides: {
                     root: {
                         backgroundColor: '#171717',
+                    }
+                }
+            }, MuiBottomNavigationAction: {
+                styleOverrides: {
+                    label: {
                         fontFamily: 'SF Pro Display, sans-serif',
                     }
                 }

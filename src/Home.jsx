@@ -38,9 +38,9 @@ const Home = () => {
                     setValue(newValue);
                 }}
             >
-                <BottomNavigationAction label="Home" style={{fontFamily: 'SF Pro Display'}} icon={<GoHome style={{ fontSize: 28  }} />} />
-                <BottomNavigationAction label="People" style={{fontFamily: 'SF Pro Display'}} icon={<FaUsersBetweenLines style={{ fontSize: 28  }} />} />
-                <BottomNavigationAction label="Photos" style={{fontFamily: 'SF Pro Display'}} icon={<MdOutlinePhoto C />} />
+                <BottomNavigationAction label="Home" icon={<GoHome style={{ fontSize: 28  }} />} />
+                <BottomNavigationAction label="People" icon={<FaUsersBetweenLines style={{ fontSize: 28  }} />} />
+                <BottomNavigationAction label="Photos" icon={<MdOutlinePhoto style={{ fontSize: 28  }} />} />
             </BottomNavigation>
         </div>
     );
