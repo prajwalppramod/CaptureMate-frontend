@@ -24,8 +24,8 @@ function srcset(image, size, rows = 1, cols = 1) {
 
 export default function PhotosScreen() {
     return (
-        <div className='flex flex-col gap-3 justify-center items-center h-screen'>
-            <h1 className='text-3xl mt-7 mb-2 md:mt-20'>Photos</h1>
+        <div className='flex pt-24 flex-col gap-3 justify-center items-center h-screen'>
+            <h1 className='text-3xl fixed top-5'>Photos</h1>
             <ImageList
                 sx={{ width: 500 }}
                 variant="quilted"

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import CancelIcon from '@mui/icons-material/Cancel';
 
 const HomeScreen = () => {
     const [uploadedFiles, setUploadedFiles] = useState([]);
@@ -37,7 +38,7 @@ const HomeScreen = () => {
                             className="absolute top-0 right-0 bg-red-500 text-white rounded-full h-6 w-6 flex justify-center items-center"
                             onClick={() => deleteFile(index)}
                         >
-                            <span>&times;</span>
+                            <CancelIcon />
                         </button>
                     </ImageListItem>
                 ))}
