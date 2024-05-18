@@ -31,17 +31,7 @@ const Home = () => {
             {renderScreen()}
             
             {/* BottomNavigation component */}
-            <BottomNavigation
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue);
-                }}
-            >
-                <BottomNavigationAction label="Home" icon={<GoHome style={{ fontSize: 28  }} />} />
-                <BottomNavigationAction label="People" icon={<FaUsersBetweenLines style={{ fontSize: 28  }} />} />
-                <BottomNavigationAction label="Photos" icon={<MdOutlinePhoto style={{ fontSize: 28  }} />} />
-            </BottomNavigation>
+            
         </div>
     );
 };

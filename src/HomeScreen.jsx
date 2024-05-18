@@ -20,17 +20,17 @@ const HomeScreen = () => {
     };
 
     return (
-        <div className='h-screen flex flex-col justify-center items-center gap-5'>
+        <div className='h-screen flex flex-col mt-20 items-center gap-5'>
             <div className='flex flex-col justify-center md:pt-20 items-center gap-5'> {/* Default gap of 5 */}
                 <img className="h-8" src="/assets/logo.png" alt="a" />
             </div>
             <div className='flex flex-col justify-center items-center gap-3' {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p>Drag and drop images here or click to browse.</p>
+                <p className='text-xl'>Drag and drop images here or click to browse.</p>
                 <button className="bg-[#F9DF00] text-[#141414] font-bold py-2 px-4 rounded">Add Image</button>
             </div>
 
-            <ImageList sx={{ width: 400, height: 600 }} cols={2} rowHeight={264}>
+            <ImageList cols={1} rowHeight={264}>
                 {uploadedFiles.map((file, index) => (
                     <ImageListItem key={index}>
                         <img src={URL.createObjectURL(file)} alt={`Uploaded Image ${index}`} loading="lazy" />
