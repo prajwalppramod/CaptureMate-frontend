@@ -1,18 +1,14 @@
-import { useState } from 'react'
 import './App.css'
-import OpeningScreen from './OpeningScreen'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
-import Home from './Home'
 import HomeScreen from './HomeScreen'
 import PeopleScreen from './PeopleScreen'
 import PhotosScreen from './PhotosScreen'
 import { Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import Onboarding from './pages/Onboarding'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <div className="w-screen h-screen flex items-center justify-center">
@@ -24,8 +20,10 @@ function App() {
             <Route path='/' element={<HomeScreen />}/>
             <Route path='/people' element={<PeopleScreen />}/>
             <Route path='/photos' element={<PhotosScreen />}/>
+            <Route path='/signup' element={<SignUp />}/>
+            <Route path='/signin' element={<SignIn />}/>
+            <Route path="/onboard" element={<Onboarding />} />
           </Routes>
-          {/* <Home /> */}
         </div>
         <div className='fixed bottom-0 z-10 w-full'><NavBar /></div>
       </div>
