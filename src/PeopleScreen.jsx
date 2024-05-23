@@ -1,31 +1,42 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { FormControl, Input, InputAdornment, InputLabel } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+import { FormControl, Input, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function PeopleScreen() {
+  const [searchTerm, setSearchTerm] = React.useState("");
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredItems = itemData.filter(item =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className='flex pt-20 md:pt-32 flex-col gap-3 justify-start items-center h-screen'>
       <h1 className='text-3xl fixed top-5'>People</h1>
-      <FormControl className='w-4/5' variant="standard">
+
+      <FormControl variant="standard" className='w-[95vw] max-w-xl mt-10'>
         <Input
-          id="input-with-icon-adornment"
+          id="search"
+          value={searchTerm}
+          onChange={handleSearchChange}
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon />
+              <IconButton>
+                <SearchIcon />
+              </IconButton>
             </InputAdornment>
           }
-          placeholder="Search"
-          // Adding the shrink prop to move the label inside the box
-          // when there is input value or focus
-          inputProps={{ 'aria-label': 'search' }}
+          placeholder="Search People"
         />
       </FormControl>
 
-      <ImageList cols={3} className='w-[95vw] max-w-xl'>
-        {itemData.map((item) => (
+      <ImageList cols={3} className='w-[95vw] max-w-xl mt-5'>
+        {filteredItems.map((item) => (
           <ImageListItem key={item.img}>
             <img
               srcSet={`${item.img}`}
@@ -44,38 +55,38 @@ export default function PeopleScreen() {
 const itemData = [
   {
     img: '/assets/prajwal.jpg',
-    title: 'Breakfast',
+    title: 'Prajwal',
   },
   {
     img: '/assets/spv.jpg',
-    title: 'Burger',
+    title: 'SPV',
   },
   {
     img: '/assets/samuel.jpg',
-    title: 'Camera',
+    title: 'Samuel',
   },
   {
     img: '/assets/baven.jpg',
-    title: 'Coffee',
+    title: 'Baven',
   },
   {
     img: '/assets/mak.jpg',
-    title: 'Hats',
+    title: 'Mak',
   },
   {
     img: '/assets/kesia.jpg',
-    title: 'Honey',
+    title: 'Kesia',
   },
   {
     img: '/assets/revand.jpg',
-    title: 'Basketball',
+    title: 'Revand',
   },
   {
     img: '/assets/junior2.jpg',
-    title: 'Fern',
+    title: 'Junior2',
   },
   {
     img: '/assets/junior1.jpg',
-    title: 'Fern',
+    title: 'Junior1',
   },
 ];
