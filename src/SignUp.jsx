@@ -6,13 +6,6 @@ const SignUp = () => {
         const formData = new FormData(event.target);
         const username = formData.get('username');
         const password = formData.get('password');
-        await fetch('http://localhost:8000/user/register', {
-            method: 'POST',
-            body: JSON.stringify({ username, password }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).then(res => res.json()).then(console.log)
     }
     return (
         <div>
