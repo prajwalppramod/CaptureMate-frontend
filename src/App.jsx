@@ -6,7 +6,6 @@ import PeopleScreen from './PeopleScreen'
 import PhotosScreen from './PhotosScreen'
 import { Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
-import Onboarding from './pages/Onboarding'
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
             <Route path='/photos' element={<PhotosScreen />}/>
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/signin' element={<SignIn />}/>
-            <Route path="/onboard" element={<Onboarding />} />
           </Routes>
         </div>
         <div className='fixed bottom-0 z-10 w-full'><NavBar /></div>
