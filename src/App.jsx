@@ -6,6 +6,7 @@ import PeopleScreen from './pages/PeopleScreen'
 import PhotosScreen from './pages/PhotosScreen'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
+import ChatScreen from './ChatScreen'
 import { useDispatch, useSelector } from 'react-redux'
 import { IconButton } from '@mui/material'
 import { Logout } from '@mui/icons-material'
@@ -38,6 +39,7 @@ function App() {
             <Route path='/photos' element={<PrivateRoute isAuthenticated={user !== null}><PhotosScreen /></PrivateRoute>}/>
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/signin' element={<SignIn />}/>
+            <Route path='/chat/:title' element={<ChatScreen />}/>
           </Routes>
         </div>
         <div className='fixed bottom-0 z-10 w-full'><NavBar /></div>
