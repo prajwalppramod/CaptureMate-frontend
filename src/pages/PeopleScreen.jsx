@@ -1,8 +1,6 @@
-import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { FormControl, Input, InputAdornment, InputLabel } from '@mui/material';
-import { AccountCircle } from '@mui/icons-material';
+import { FormControl, Input, InputAdornment } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 export default function PeopleScreen() {

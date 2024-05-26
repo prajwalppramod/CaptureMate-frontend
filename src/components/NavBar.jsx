@@ -1,9 +1,8 @@
 import { BottomNavigation, BottomNavigationAction } from '@mui/material';
-import React from 'react'
 import { FaUsersBetweenLines } from 'react-icons/fa6';
 import { GoHome } from 'react-icons/go';
 import { MdOutlinePhoto } from 'react-icons/md';
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 export default function NavBar() {
     const location = useLocation();
