@@ -1,6 +1,14 @@
 import { Button, TextField } from '@mui/material'
+import { useRegisterUserMutation } from '../services/user/userApi';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../services/user/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const [register, result] = useRegisterUserMutation();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const onSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -13,28 +21,15 @@ const SignUp = () => {
             alert('Passwords do not match');
             return;
         }
-        fetch('http://localhost:8000/user/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                email,
-                username,
-                password,
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.error) {
-                    alert(data.error);
-                } else {
-                    alert('User registered successfully');
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        const res = await register({ email, username, password });
+
+        if(!res.data) {
+            alert(res.error.data?.error ?? res.error.message ?? 'An error occurred. Please try again.')
+            return;
+        }
+
+        dispatch(setUser(res.data.user));
+        return navigate('/')
     }
     return (
         <form onSubmit={onSubmit} className="flex max-md:p-6 flex-col justify-center items-center gap-5 max-w-6xl m-auto"> {/* Default gap of 5 */}
@@ -54,7 +49,7 @@ const SignUp = () => {
                 <Button>Forgot Password?</Button>
             </div>
             <div className="flex flex-col justify-between w-full gap-2">
-                <Button fullWidth variant="outlined" type='submit'>Sign Up</Button>
+                <Button fullWidth variant="outlined" type='submit' disabled={result.isLoading}>Sign Up</Button>
             </div>
             <div className="flex justify-center w-full gap-2">
                 <span className='text-sm'>Already have an account? <a href="/signin">Sign In</a></span>

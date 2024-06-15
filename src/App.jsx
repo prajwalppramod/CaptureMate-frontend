@@ -4,16 +4,18 @@ import SignUp from './pages/SignUp'
 import HomeScreen from './pages/HomeScreen'
 import PeopleScreen from './pages/PeopleScreen'
 import PhotosScreen from './pages/PhotosScreen'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import NavBar from './components/NavBar'
 import ChatScreen from './ChatScreen'
 import { useDispatch, useSelector } from 'react-redux'
 import { IconButton } from '@mui/material'
-import { Logout } from '@mui/icons-material'
+import { AccountCircle, Logout } from '@mui/icons-material'
 import { setUser } from './services/user/userSlice'
+import Profile from './pages/Profile'
+import Onboarding from './pages/Onboarding'
 
-const PrivateRoute = ({ children, isAuthenticated }) => {
-  return isAuthenticated ? children : <Navigate to='/signin' />
+const PrivateRoute = ({ children, isAuthenticated, navLink }) => {
+  return isAuthenticated ? children : <Navigate to={navLink ?? '/signin'} />
 }
 
 function App() {
@@ -28,18 +30,20 @@ function App() {
   return (
     <>
       <div className="w-screen min-h-screen flex items-center justify-center">
-        {user !== null && <IconButton className='fixed top-4 right-4' sx={{position: 'fixed'}} onClick={handleLogout}><Logout /></IconButton>}
+        {user !== null && <div className='fixed top-4 right-4 flex gap-4'><Link to={'/profile'}><IconButton><AccountCircle /></IconButton></Link><IconButton onClick={handleLogout}><Logout /></IconButton></div>}
         {/* <OpeningScreen /> */}
         {/* <SignIn/> */}
         {/* <SignUp/> */}
         <div className="w-full pb-20">
           <Routes>
-            <Route path='/' element={<PrivateRoute isAuthenticated={user !== null}><HomeScreen /></PrivateRoute>}/>
-            <Route path='/people' element={<PrivateRoute isAuthenticated={user !== null}><PeopleScreen /></PrivateRoute>}/>
-            <Route path='/photos' element={<PrivateRoute isAuthenticated={user !== null}><PhotosScreen /></PrivateRoute>}/>
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/signin' element={<SignIn />}/>
-            <Route path='/chat/:title' element={<ChatScreen />}/>
+            <Route path='/onboarding' element={<PrivateRoute isAuthenticated={user !== null}><Onboarding /></PrivateRoute>}/>
+            <Route path='/' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><HomeScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/people' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><PeopleScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/photos' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><PhotosScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/chat/:title' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><ChatScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/profile' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><Profile /></PrivateRoute></PrivateRoute>}/>
           </Routes>
         </div>
         <div className='fixed bottom-0 z-10 w-full'><NavBar /></div>

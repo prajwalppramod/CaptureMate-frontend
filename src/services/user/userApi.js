@@ -21,7 +21,50 @@ export const userApi = createApi({
                 body,
             }),
         }),
+        addProfilePicture: builder.mutation({
+            query: (body) => ({
+                url: 'user/profile-picture',
+                method: 'POST',
+                params: {
+                    userId: body.userId,
+                },
+                body: body.formData,
+            }),
+        }),
+        addOnboardingPicture: builder.mutation({
+            query: (body) => ({
+                url: 'user/onboarding',
+                method: 'POST',
+                params: {
+                    userId: body.userId,
+                },
+                body: body.formData,
+            }),
+        }),
+        findPeople: builder.query({
+            query: (filter) => ({
+                url: 'user/people',
+                params: {
+                    query: filter,
+                },
+            }),
+        }),
+        getFriends: builder.query({
+            query: (userId) => ({
+                url: 'user/friends',
+                params: {
+                    userId,
+                },
+            }),
+        }),
+        addFriend: builder.mutation({
+            query: (userId, friendId) => ({
+                url: `user/friends`,
+                method: 'POST',
+                body: { userId, friendId },
+            }),
+        }),
     }),
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation } = userApi
+export const { useRegisterUserMutation, useLoginUserMutation, useAddProfilePictureMutation, useAddFriendMutation, useFindPeopleQuery, useGetFriendsQuery, useAddOnboardingPictureMutation } = userApi

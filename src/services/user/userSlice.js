@@ -19,9 +19,13 @@ export const userSlice = createSlice({
                 localStorage.removeItem('user');
             }
         },
+        setOnboarded: (state, action) => {
+            state.user = {...state.user, onboarded: action.payload};
+            localStorage.setItem('user', JSON.stringify(state.user));
+        }
     },
 })
 
-export const { setUser } = userSlice.actions
+export const { setUser, setOnboarded } = userSlice.actions
 
 export default userSlice.reducer
