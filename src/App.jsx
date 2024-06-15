@@ -39,11 +39,11 @@ function App() {
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/signin' element={<SignIn />}/>
             <Route path='/onboarding' element={<PrivateRoute isAuthenticated={user !== null}><Onboarding /></PrivateRoute>}/>
-            <Route path='/' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><HomeScreen /></PrivateRoute></PrivateRoute>}/>
-            <Route path='/people' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><PeopleScreen /></PrivateRoute></PrivateRoute>}/>
-            <Route path='/photos' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><PhotosScreen /></PrivateRoute></PrivateRoute>}/>
-            <Route path='/chat/:title' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><ChatScreen /></PrivateRoute></PrivateRoute>}/>
-            <Route path='/profile' element={<PrivateRoute isAuthenticated={user !== null}><PrivateRoute isAuthenticated={user.onboarded} navLink='/onboarding'><Profile /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><HomeScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/people' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PeopleScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/photos' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PhotosScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/chat/:title' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><ChatScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/profile' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><Profile /></PrivateRoute></PrivateRoute>}/>
           </Routes>
         </div>
         <div className='fixed bottom-0 z-10 w-full'><NavBar /></div>

@@ -25,7 +25,7 @@ export default function Profile() {
     return (
         <div className='flex flex-col gap-3 items-center'>
             <h1 className="text-3xl">Profile</h1>
-            <ProfilePicture userId={user.userId} />
+            <div className="size-40"><ProfilePicture userId={user.userId} /></div>
             <input type="file" name="profile-picture" id="profile-picture" accept=".png, .jpg, .jpeg" className="mx-2" onChange={(e) => setSelectedPicture(e.target.files.length > 0 ? e.target.files[0] : null)}/>
             <Button onClick={handleSavePicture} disabled={result.isLoading}>Save Profile Picture</Button>
         </div>

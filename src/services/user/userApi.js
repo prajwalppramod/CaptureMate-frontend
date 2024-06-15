@@ -42,9 +42,10 @@ export const userApi = createApi({
             }),
         }),
         findPeople: builder.query({
-            query: (filter) => ({
+            query: ({userId, filter}) => ({
                 url: 'user/people',
                 params: {
+                    userId,
                     query: filter,
                 },
             }),
@@ -56,15 +57,17 @@ export const userApi = createApi({
                     userId,
                 },
             }),
+            providesTags: [{ type: 'User', id: 'FRIENDS' }],
         }),
-        addFriend: builder.mutation({
-            query: (userId, friendId) => ({
+        addOrRemoveFriend: builder.mutation({
+            query: (body) => ({
                 url: `user/friends`,
                 method: 'POST',
-                body: { userId, friendId },
+                body,
             }),
+            invalidatesTags: [{ type: 'User', id: 'FRIENDS' }],
         }),
     }),
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation, useAddProfilePictureMutation, useAddFriendMutation, useFindPeopleQuery, useGetFriendsQuery, useAddOnboardingPictureMutation } = userApi
+export const { useRegisterUserMutation, useLoginUserMutation, useAddProfilePictureMutation, useAddOrRemoveFriendMutation, useFindPeopleQuery, useGetFriendsQuery, useAddOnboardingPictureMutation } = userApi
