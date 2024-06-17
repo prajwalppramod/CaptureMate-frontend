@@ -1,5 +1,7 @@
-export default function ProfilePicture({ userId, username }) {
+import { Avatar } from "@mui/material";
+
+export default function ProfilePicture({ userId }) {
     return (
-        <img src={`${import.meta.env.VITE_API_URL ?? 'http://localhost:3000/'}user/profile-picture?userId=${userId}`} className="rounded-full size-full" />
+        <Avatar src={`${import.meta.env.VITE_API_URL ?? 'http://localhost:3000/'}user/profile-picture?userId=${userId}`} sx={{width: '100%', height: '100%'}} className="rounded-full size-full" />
     )
 }

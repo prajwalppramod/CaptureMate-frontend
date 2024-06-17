@@ -13,6 +13,7 @@ import { AccountCircle, Logout } from '@mui/icons-material'
 import { setUser } from './services/user/userSlice'
 import Profile from './pages/Profile'
 import Onboarding from './pages/Onboarding'
+import PendingInvites from './pages/Invites'
 
 const PrivateRoute = ({ children, isAuthenticated, navLink }) => {
   return isAuthenticated ? children : <Navigate to={navLink ?? '/signin'} />
@@ -27,6 +28,7 @@ function App() {
       dispatch(setUser(null));
     }
   }
+  console.log(user)
   return (
     <>
       <div className="w-screen min-h-screen flex items-center justify-center">
@@ -38,9 +40,10 @@ function App() {
           <Routes>
             <Route path='/signup' element={<SignUp />}/>
             <Route path='/signin' element={<SignIn />}/>
-            <Route path='/onboarding' element={<PrivateRoute isAuthenticated={user !== null}><Onboarding /></PrivateRoute>}/>
+            <Route path='/onboarding' element={<PrivateRoute isAuthenticated={!user?.onboarded} navLink='/'><PrivateRoute isAuthenticated={user !== null}><Onboarding /></PrivateRoute></PrivateRoute>}/>
             <Route path='/' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><HomeScreen /></PrivateRoute></PrivateRoute>}/>
             <Route path='/people' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PeopleScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/invites' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PendingInvites /></PrivateRoute></PrivateRoute>}/>
             <Route path='/photos' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PhotosScreen /></PrivateRoute></PrivateRoute>}/>
             <Route path='/chat/:title' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><ChatScreen /></PrivateRoute></PrivateRoute>}/>
             <Route path='/profile' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><Profile /></PrivateRoute></PrivateRoute>}/>

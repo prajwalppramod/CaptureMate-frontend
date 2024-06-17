@@ -59,6 +59,23 @@ export const userApi = createApi({
             }),
             providesTags: [{ type: 'User', id: 'FRIENDS' }],
         }),
+        getFriendInvites: builder.query({
+            query: (userId) => ({
+                url: 'user/friends/invites',
+                params: {
+                    userId,
+                },
+            }),
+            providesTags: [{ type: 'User', id: 'FRIEND_INVITES' }],
+        }),
+        acceptOrRejectFriendInvite: builder.mutation({
+            query: (body) => ({
+                url: 'user/friends/invites',
+                method: 'POST',
+                body,
+            }),
+            invalidatesTags: [{ type: 'User', id: 'FRIEND_INVITES' }],
+        }),
         addOrRemoveFriend: builder.mutation({
             query: (body) => ({
                 url: `user/friends`,
@@ -70,4 +87,4 @@ export const userApi = createApi({
     }),
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation, useAddProfilePictureMutation, useAddOrRemoveFriendMutation, useFindPeopleQuery, useGetFriendsQuery, useAddOnboardingPictureMutation } = userApi
+export const { useRegisterUserMutation, useLoginUserMutation, useAddProfilePictureMutation, useAddOrRemoveFriendMutation, useFindPeopleQuery, useGetFriendsQuery, useAddOnboardingPictureMutation, useAcceptOrRejectFriendInviteMutation, useGetFriendInvitesQuery } = userApi
