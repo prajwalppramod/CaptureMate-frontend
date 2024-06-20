@@ -115,13 +115,13 @@ export default function PeopleScreen() {
       <ImageList cols={3} className='w-[95vw] max-w-xl mt-5 gap-4'>
         {searchTerm ? peopleFoundData?.users?.map((user) => (
           <ImageListItem className='flex items-center justify-center' key={user.userId}>
-            <div className='rounded-full size-20'><ProfilePicture userId={user.userId} username={user.username}/></div>
+            <a className='rounded-full size-20'><ProfilePicture userId={user.userId}/></a>
             <div className='flex flex-col items-center gap-2'><span>{user.username}</span><Button variant='outlined' disabled={isFindPeopleLoading} onClick={(event) => handleAddOrRemoveFriend(event, user.userId)}>{getFriendActionText(user.userId)}</Button></div>
           </ImageListItem>
         )) ?? []
         : friendsData?.map((user) => (
-          <ImageListItem className='flex items-center justify-center' key={user.userId}s>
-            <div className='rounded-full size-20'><ProfilePicture userId={user.userId} username={user.username}/></div>
+          <ImageListItem className='flex items-center justify-center' key={user.userId}>
+            <a href={`/chat/${user.userId}`} className='rounded-full size-20'><ProfilePicture userId={user.userId}/></a>
             <div className='flex flex-col items-center gap-2'><span>{user.username}</span><Button variant='outlined' disabled={isGetFriendsLoading || addOrRemoveResult.isLoading} onClick={(event) => handleAddOrRemoveFriend(event, user.userId)}>{getFriendActionText(user.userId)}</Button></div>
           </ImageListItem>
         )) ?? []

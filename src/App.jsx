@@ -14,6 +14,7 @@ import { setUser } from './services/user/userSlice'
 import Profile from './pages/Profile'
 import Onboarding from './pages/Onboarding'
 import PendingInvites from './pages/Invites'
+import SendPhoto from './pages/SendPhoto'
 
 const PrivateRoute = ({ children, isAuthenticated, navLink }) => {
   return isAuthenticated ? children : <Navigate to={navLink ?? '/signin'} />
@@ -21,6 +22,7 @@ const PrivateRoute = ({ children, isAuthenticated, navLink }) => {
 
 function App() {
   const user = useSelector(state => state.user.user);
+  const photoId = useSelector(state => state.photo.photoId);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -32,7 +34,7 @@ function App() {
   return (
     <>
       <div className="w-screen min-h-screen flex items-center justify-center">
-        {user !== null && <div className='fixed top-4 right-4 flex gap-4'><Link to={'/profile'}><IconButton><AccountCircle /></IconButton></Link><IconButton onClick={handleLogout}><Logout /></IconButton></div>}
+        {user !== null && <div className='fixed top-4 right-4 flex gap-4 z-10'><Link to={'/profile'}><IconButton><AccountCircle /></IconButton></Link><IconButton onClick={handleLogout}><Logout /></IconButton></div>}
         {/* <OpeningScreen /> */}
         {/* <SignIn/> */}
         {/* <SignUp/> */}
@@ -45,8 +47,9 @@ function App() {
             <Route path='/people' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PeopleScreen /></PrivateRoute></PrivateRoute>}/>
             <Route path='/invites' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PendingInvites /></PrivateRoute></PrivateRoute>}/>
             <Route path='/photos' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><PhotosScreen /></PrivateRoute></PrivateRoute>}/>
-            <Route path='/chat/:title' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><ChatScreen /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/chat/:id' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><ChatScreen /></PrivateRoute></PrivateRoute>}/>
             <Route path='/profile' element={<PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><Profile /></PrivateRoute></PrivateRoute>}/>
+            <Route path='/send-photo' element={<PrivateRoute isAuthenticated={photoId !== null} navLink='/'><PrivateRoute isAuthenticated={user?.onboarded} navLink='/onboarding'><PrivateRoute isAuthenticated={user !== null}><SendPhoto /></PrivateRoute></PrivateRoute></PrivateRoute>}/>
           </Routes>
         </div>
         <div className='fixed bottom-0 z-10 w-full'><NavBar /></div>
