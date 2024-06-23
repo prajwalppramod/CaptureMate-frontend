@@ -88,8 +88,7 @@ export default function PeopleScreen() {
   // );
 
   return (
-    <div className='flex pt-20 md:pt-32 flex-col gap-3 justi<Button 
-<Button fy-start items-center h-screen'>
+    <div className='flex pt-20 md:pt-32 flex-col gap-3 justify-start items-center h-screen'>
       <h1 className='text-3xl fixed top-5'>People</h1>
 
       <FormControl variant="standard" className='w-[95vw] max-w-xl mt-10'>

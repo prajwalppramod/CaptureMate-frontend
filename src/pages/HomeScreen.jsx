@@ -59,7 +59,7 @@ const HomeScreen = () => {
             </div>
             <div className='flex flex-col justify-center items-center gap-3' {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p className='text-xl'>Drag and drop images here or click to browse.</p>
+                <p className='md:text-xl'>Drag and drop images here or click to browse.</p>
                 <button className="bg-[#F9DF00] text-[#141414] font-bold py-2 px-4 rounded" type='button'>Add Image</button>
             </div>
 
