@@ -41,19 +41,19 @@ const ChatScreen = () => {
         <div className='size-16'><ProfilePicture userId={friend.userId} /></div>
         <h1 className='text-xl text-white'>{friend.username}</h1>
       </div>
-      <div className='flex-1 p-4 overflow-auto'>
+      <div className='flex-1 p-4 pt-28 overflow-auto'>
         {chatData.map(message => (
           <div key={message.photoId} className={`my-2 w-full flex ${message.sent ? 'justify-end' : 'justify-start'}`}>
             <img src={`${import.meta.env.VITE_API_URL ?? 'http://localhost:3000/'}recognize/photo?id=${message.photoId}`} alt="chat" className='max-h-80' />
           </div>
         ))}
       </div>
-      <div className='p-4 flex justify-center'>
+      {/* <div className='p-4 flex justify-center'>
         <input type='file' accept='image/*'  className='hidden' id='fileInput' />
         <label htmlFor='fileInput' className='cursor-pointer'>
           <span className='p-2 bg-gray-800 text-white rounded'>Add Image</span>
         </label>
-      </div>
+      </div> */}
     </div>
   );
 };

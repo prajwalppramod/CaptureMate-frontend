@@ -24,6 +24,7 @@ const SignUp = () => {
         const res = await register({ email, username, password });
 
         if(!res.data) {
+            console.log(res)
             alert(res.error.data?.error ?? res.error.message ?? 'An error occurred. Please try again.')
             return;
         }

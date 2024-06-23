@@ -3,7 +3,7 @@ import { Button, IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import ProfilePicture from "../components/ProfilePicture";
 import { useSendMutation } from "../services/photo/photoApi";
-import { setPhotoId } from "../services/photo/photoSlice";
+import { removeRecipient, setPhotoId } from "../services/photo/photoSlice";
 
 export default function SendPhoto() {
     const user = useSelector(state => state.user.user);
@@ -18,7 +18,7 @@ export default function SendPhoto() {
             <img src={`${import.meta.env.VITE_API_URL ?? 'http://localhost:3000/'}recognize/photo?id=${photoId}`} className="max-h-96"/>
             <div className="flex flex-col">
                 {
-                    recipients.map(recipient => <div key={recipient.userId} className="flex items-center gap-4"><div className="h-16"><ProfilePicture userId={recipient.userId}/></div>{recipient.username} <div><IconButton><Close /></IconButton></div></div>)
+                    recipients.map(recipient => <div key={recipient.userId} className="flex items-center gap-4"><div className="h-16"><ProfilePicture userId={recipient.userId}/></div>{recipient.username} <div><IconButton onClick={() => dispatch(removeRecipient(recipient.userId))}><Close /></IconButton></div></div>)
                 }
             </div>
             <Button variant="contained" className="flex gap-2 items-center" disabled={result.isLoading} onClick={async () => {
